@@ -33,7 +33,9 @@ namespace CookBook.Repositories
                 Recipe recipe = new Recipe();
                 recipe.RecipeID = int.Parse(reader["RecipeId"].ToString());
                 recipe.RecipeName = reader["RecipeName"].ToString();
-                recipe.RecipeTypeID = int.Parse(reader["RecipeTypeID"].ToString());
+                recipe.Category = int.Parse(reader["Category"].ToString());
+                recipe.RecipeType = reader["RecipeType"].ToString();
+                recipe.Ingredients = reader["Ingredients"].ToString();
                 recipe.Description = reader["Description"].ToString();
                 recipe.Source = reader["Source"].ToString();
                 recipes.Add(recipe);
@@ -56,7 +58,9 @@ namespace CookBook.Repositories
             {
                 re.RecipeID = int.Parse(dr["RecipeId"].ToString());
                 re.RecipeName = dr["RecipeName"].ToString();
-                re.RecipeTypeID = int.Parse(dr["RecipeTypeID"].ToString());
+                re.RecipeType = dr["RecipeType"].ToString();
+                re.Category = int.Parse(dr["Category"].ToString());
+                re.Ingredients = dr["Ingredients"].ToString();
                 re.Description = dr["Description"].ToString();
                 re.Source = dr["Source"].ToString();
             }
@@ -68,7 +72,9 @@ namespace CookBook.Repositories
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@RecipeID", recipe.RecipeID);
             cmd.Parameters.AddWithValue("@RecipeName", recipe.RecipeName);
-            cmd.Parameters.AddWithValue("@RecipeTypeID", recipe.RecipeTypeID);
+            cmd.Parameters.AddWithValue("@RecipeType", recipe.RecipeType);
+            cmd.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
+            cmd.Parameters.AddWithValue("@Category", recipe.Category);
             cmd.Parameters.AddWithValue("@Description", recipe.Description);
             cmd.Parameters.AddWithValue("@Source", recipe.Source);
             _connection.Open();
@@ -79,9 +85,10 @@ namespace CookBook.Repositories
         {
             SqlCommand cmd = new SqlCommand("spAddRecipe", _connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@RecipeId", recipe.RecipeID);
             cmd.Parameters.AddWithValue("@RecipeName", recipe.RecipeName);
-            cmd.Parameters.AddWithValue("@RecipeTypeID", recipe.RecipeTypeID);
+            cmd.Parameters.AddWithValue("@RecipeType", recipe.RecipeType);
+            cmd.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
+            cmd.Parameters.AddWithValue("@Category", recipe.Category);
             cmd.Parameters.AddWithValue("@Description", recipe.Description);
             cmd.Parameters.AddWithValue("@Source", recipe.Source);
             _connection.Open();

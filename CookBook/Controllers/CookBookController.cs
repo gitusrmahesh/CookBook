@@ -31,13 +31,11 @@ namespace CookBook.Controllers
             }
             catch (Exception)
             {
-                throw;
-
-                //return BadRequest();
+                return BadRequest();
             }
         }
         [HttpGet]
-        [Route("GetAllRecipes")]
+        [Route("")]
         public IActionResult GetAllRecipies()
         {
             try
@@ -49,8 +47,7 @@ namespace CookBook.Controllers
             }
             catch (Exception)
             {
-                throw;
-                //return BadRequest();
+                return BadRequest();
             }
         }
         [HttpPost]
@@ -67,8 +64,7 @@ namespace CookBook.Controllers
                 }
                 catch (Exception)
                 {
-                    throw;
-                   // return BadRequest();
+                   return BadRequest();
                 }
             }
             return BadRequest();
